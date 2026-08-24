@@ -3,7 +3,7 @@
 
 int calculate_population_number(int initial_value, int final_value);
 
-static inline double brute_force_mean(double data[], int initial, int final);
+double brute_force_mean(double data[], int initial, int final);
 
 double brute_force_variance(double data[], double mean, int initial, int final);
 
