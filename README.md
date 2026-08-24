@@ -14,7 +14,7 @@ Centering is not optional bookkeeping — every subsequent quantity is a second 
 
 Consider a unit vector $w\in\mathbb{R}^d$, $w^Tw=1$, defining a linear projection $z=X_cw\in\mathbb{R}^n$, with entries $z_i=w^Tx_{c,i}$. The sample variance of this projected scalar is
 
-$$\operatorname{Var}(z)=\frac{1}{n}\sum_{i=1}^n z_i^2=\frac{1}{n}z^Tz=\frac{1}{n}(X_cw)^T(X_cw)=w^T\left(\frac{1}{n}X_c^TX_c\right)w.$$
+$$\text{Var}(z)=\frac{1}{n}\sum_{i=1}^n z_i^2=\frac{1}{n}z^Tz=\frac{1}{n}(X_cw)^T(X_cw)=w^T\left(\frac{1}{n}X_c^TX_c\right)w.$$
 
 The matrix appearing in this expression is defined as
 
@@ -22,9 +22,9 @@ $$\Sigma:=\frac{1}{n}X_c^TX_c\in\mathbb{R}^{d\times d},$$
 
 and its $(j,k)$ entry expands as
 
-$$\Sigma_{jk}=\frac{1}{n}\sum_{i=1}^n(x_{ij}-\bar x_j)(x_{ik}-\bar x_k)=\operatorname{Cov}(X_j,X_k).$$
+$$\Sigma_{jk}=\frac{1}{n}\sum_{i=1}^n(x_{ij}-\bar x_j)(x_{ik}-\bar x_k)=\text{Cov}(X_j,X_k).$$
 
-So $\Sigma$ is not introduced by assumption; it arises algebraically as the Gram matrix of the centered data, and it is the unique matrix satisfying $\operatorname{Var}(z)=w^T\Sigma w$ for every direction $w$. This identity is what makes $\Sigma$ indispensable: it converts the scalar problem "variance along one direction" into a quadratic form defined over all directions simultaneously.
+So $\Sigma$ is not introduced by assumption; it arises algebraically as the Gram matrix of the centered data, and it is the unique matrix satisfying $\text{Var}(z)=w^T\Sigma w$ for every direction $w$. This identity is what makes $\Sigma$ indispensable: it converts the scalar problem "variance along one direction" into a quadratic form defined over all directions simultaneously.
 
 ## Constrained optimization
 
@@ -48,7 +48,7 @@ so the variance captured along an eigenvector equals its eigenvalue exactly. The
 
 ## Spectral structure
 
-Since $\Sigma$ is symmetric ($\Sigma^T=\Sigma$) and positive semi-definite ($w^T\Sigma w=\operatorname{Var}(z)\ge0$ for all $w$), the spectral theorem guarantees a full set of real eigenvalues
+Since $\Sigma$ is symmetric ($\Sigma^T=\Sigma$) and positive semi-definite ($w^T\Sigma w=\text{Var}(z)\ge0$ for all $w$), the spectral theorem guarantees a full set of real eigenvalues
 
 $$\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_d\ge0$$
 
@@ -64,7 +64,7 @@ $$Z=X_cW_k\in\mathbb{R}^{n\times k},$$
 
 gives the coordinates of the data in principal component space. The covariance of the transformed data follows directly from the eigen-relations:
 
-$$\operatorname{Cov}(Z)=\frac{1}{n}Z^TZ=W_k^T\Sigma W_k=W_k^T(W_k\Lambda_k)=\Lambda_k=\operatorname{diag}(\lambda_1,\dots,\lambda_k),$$
+$$\text{Cov}(Z)=\frac{1}{n}Z^TZ=W_k^T\Sigma W_k=W_k^T(W_k\Lambda_k)=\Lambda_k=\text{diag}(\lambda_1,\dots,\lambda_k),$$
 
 which is diagonal by construction — the components are uncorrelated not as an assumption but as a consequence of eigenvector orthogonality.
 
@@ -72,24 +72,6 @@ which is diagonal by construction — the components are uncorrelated not as an 
 
 The proportion of total variance retained by the first $k$ components is
 
-$$\frac{\sum_{j=1}^k\lambda_j}{\sum_{j=1}^d\lambda_j}=\frac{\sum_{j=1}^k\lambda_j}{\operatorname{tr}(\Sigma)},$$
+$$\frac{\sum_{j=1}^k\lambda_j}{\sum_{j=1}^d\lambda_j}=\frac{\sum_{j=1}^k\lambda_j}{\text{tr}(\Sigma)},$$
 
-using the identity $\operatorname{tr}(\Sigma)=\sum_j\lambda_j$, which follows from the invariance of the trace under the orthogonal similarity transformation $\Sigma=W\Lambda W^T$.
-
----
-
-### Wikipedia
-
-Principal component analysis (PCA) is a linear dimensionality reduction
-technique with applications in exploratory data analysis, visualization
-and data preprocessing.
-
-The data are linearly transformed onto a new coordinate system such that
-the directions (principal components) capturing the largest variation in
-the data can be easily identified.
-
----
-
-### Other
-
-Principal components analysis (PCA) is a method for finding low-dimensional representations of a data set that retain as much of the original variation as possible. The idea is that each of the n observations lives in p-dimensional space, but not all of these dimensions are equally interesting. In PCA we look for a smaller number of dimensions that are as interesting as possible, where the concept of interesting is measured by the amount that the observations vary along each dimension. Each of the new dimensions found in PCA is a linear combination of the original p features. The hope is to use a small subset of these linear feature combinations in further analysis while retaining most of the information present in the original data.
+using the identity $\text{tr}(\Sigma)=\sum_j\lambda_j$, which follows from the invariance of the trace under the orthogonal similarity transformation $\Sigma=W\Lambda W^T$.
