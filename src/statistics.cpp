@@ -1,4 +1,5 @@
 #include "../include/statistics.hpp"
+#include "../include/arithmetics.hpp"
 
 int calculate_population_number(int initial_value, int final_value) {
 
@@ -22,7 +23,7 @@ double brute_force_mean(double data[], int initial, int final) {
     sum_x += data[i];
   }
 
-  double mean = sum_x / n;
+  double mean = arithmetics::division(sum_x, n);
 
   return mean;
 }
@@ -37,7 +38,7 @@ double brute_force_variance(double data[], double mean, int initial,
     sum_x += (data[i] - mean) * (data[i] - mean);
   }
 
-  double variance = sum_x / n;
+  double variance = arithmetics::division(sum_x, n);
 
   return variance;
 }
@@ -49,6 +50,6 @@ double brute_force_covariance(double data_x[], double data_y[], double mean_x,
   for (int i = initial; i <= final; i++) {
     sum_xy += (data_x[i] - mean_x) * (data_y[i] - mean_y);
   }
-  double covariance = sum_xy / n;
+  double covariance = arithmetics::division(sum_xy, n);
   return covariance;
 }
